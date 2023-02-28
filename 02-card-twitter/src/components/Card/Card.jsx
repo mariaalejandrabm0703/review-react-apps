@@ -4,10 +4,7 @@ import './Card.css'
 
 export function Card({ children, userName, initialIs }) {
     const [isFollowing, setIsFollowing] = useState(initialIs)
-
-    console.log('card - ', children, ' - ', userName, ' - ', initialIs)
-
-    const text = isFollowing ? 'Siguiendo' : 'Seguir'
+    const textButton = isFollowing ? 'Siguiendo' : 'Seguir'
     const buttonClassName = isFollowing
         ? 'tw-followCard-button is-following'
         : 'tw-followCard-button'
@@ -21,7 +18,7 @@ export function Card({ children, userName, initialIs }) {
             <header className='tw-followCard-header'>
                 <img
                     className='tw-followCard-avatar'
-                    alt='El avatar de midudev'
+                    alt={`el avatar de ${userName}`}
                     src={`https://unavatar.io/${userName}`}
                 />
                 <div className='tw-followCard-info'>
@@ -29,10 +26,9 @@ export function Card({ children, userName, initialIs }) {
                     <span className='tw-followCard-infoUserName'>@{userName}</span>
                 </div>
             </header>
-
             <aside>
                 <button className={buttonClassName} onClick={handleClick}>
-                    <span className='tw-followCard-text'>{text}</span>
+                    <span className='tw-followCard-text'>{textButton}</span>
                     <span className='tw-followCard-stopFollow'>Dejar de seguir</span>
                 </button>
             </aside>
