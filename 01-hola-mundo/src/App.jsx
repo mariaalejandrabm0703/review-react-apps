@@ -1,14 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <header className="App-header">Hola mundo</header>
-    </div>
+    <article>
+      <header>
+        <img src="https://avatars.githubusercontent.com/u/65203235?v=4" alt="React Logo" />
+        <h1>Maria Alejandra Bohorquez</h1>
+        <span>Started review of react</span>
+      </header>
+      
+      <aside>
+        <button>
+          Seguir
+        </button>
+      </aside>
+    </article>
   )
 }
 
