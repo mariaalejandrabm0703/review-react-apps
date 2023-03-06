@@ -9,12 +9,12 @@ const OMDB_API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=f810fa4e'
 function App() {
   const movies = useMovies();
   const hasMovie = movies?.length > 0;    
-  const inputRef = useRef();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const value = inputRef.current.value;
-    console.log(value);
+    const { movie } = Object.fromEntries(new window.FormData(event.target));
+    console.log(movie);
+    if(movie === '') return
   }
 
   return (
@@ -22,7 +22,7 @@ function App() {
       <header>
         <h1>Buscador de peliculas</h1>
         <form className='form' onSubmit={handleSubmit}>
-          <input ref={inputRef} placeholder='Avengers, Start Wars, The Matrix' />
+          <input name="movie" placeholder='Avengers, Start Wars, The Matrix' />
           <button type='submit'>Buscar</button>
         </form>
       </header>
