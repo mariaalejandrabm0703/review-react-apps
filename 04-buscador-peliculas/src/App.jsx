@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import './App.css';
 import { Movies } from './components/Movies';
 import { useMovies } from './hooks/useMovies';
@@ -7,14 +8,21 @@ const OMDB_API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=f810fa4e'
 
 function App() {
   const movies = useMovies();
-  const hasMovie = movies?.length > 0;
+  const hasMovie = movies?.length > 0;    
+  const inputRef = useRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const value = inputRef.current.value;
+    console.log(value);
+  }
 
   return (
     <div className="container">
       <header>
         <h1>Buscador de peliculas</h1>
-        <form className='form'>
-          <input placeholder='Avengers, Start Wars, The Matrix' />
+        <form className='form' onSubmit={handleSubmit}>
+          <input ref={inputRef} placeholder='Avengers, Start Wars, The Matrix' />
           <button type='submit'>Buscar</button>
         </form>
       </header>
@@ -22,7 +30,7 @@ function App() {
         {hasMovie ?
           <Movies movies={movies} />
           :
-          <p>No hay peliculas</p>
+          <p>No hay peliculas disponibles con esa busqueda</p>
         }
       </main>
     </div>
