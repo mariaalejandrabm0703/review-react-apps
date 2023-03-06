@@ -1,11 +1,12 @@
 import './App.css';
-import responseMovies from './mocks/results.json';
+import { Movies } from './components/Movies';
+import { useMovies } from './hooks/useMovies';
 
 const OMDB_API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=f810fa4e'
 // https://www.omdbapi.com/?i=tt3896198&apikey=f810fa4e&s=marvels
 
 function App() {
-  const movies = responseMovies.Search;
+  const movies = useMovies();
   const hasMovie = movies?.length > 0;
 
   return (
@@ -19,18 +20,7 @@ function App() {
       </header>
       <main>
         {hasMovie ?
-          <ul>
-            {movies.map(movie => (
-              <li key={movie.imdbID}>
-                <a target="_blank" href={`https://www.imdb.com/title/${movie.imdbID}`}>
-                  <h3>{movie.Title}</h3>
-                </a>
-                <p>Año: {movie.Year}</p>
-                <p>Tipo: {movie.Type}</p>
-                <img src={movie.Poster} alt={movie.Title} />
-              </li>
-            ))}
-          </ul>
+          <Movies movies={movies} />
           :
           <p>No hay peliculas</p>
         }
@@ -40,3 +30,4 @@ function App() {
 }
 
 export default App
+    
