@@ -52,7 +52,7 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div className="page">
       <header>
         <h1>Buscador de peliculas</h1>
         <form className='form' onSubmit={handleSubmit}>
@@ -65,10 +65,9 @@ function App() {
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
       <main>
-        {hasMovie ?
-          <Movies movies={movies} />
-          :
-          <p>No hay peliculas disponibles con esa busqueda</p>
+        {hasMovie
+          ? (<Movies movies={movies} />)
+          : (<p>No hay peliculas disponibles con esa busqueda</p>)
         }
       </main>
     </div>
