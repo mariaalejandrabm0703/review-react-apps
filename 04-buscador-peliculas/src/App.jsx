@@ -3,9 +3,6 @@ import './App.css';
 import { Movies } from './components/Movies';
 import { useMovies } from './hooks/useMovies';
 
-const OMDB_API_URL = 'http://www.omdbapi.com/?i=tt3896198&apikey=f810fa4e'
-// https://www.omdbapi.com/?i=tt3896198&apikey=f810fa4e&s=marvels
-
 function useSearch() {
   const [movie, setMovie] = useState('');
   const [error, setError] = useState('');
@@ -38,13 +35,15 @@ function useSearch() {
 }
 
 function App() {
-  const movies = useMovies();
-  const hasMovie = movies?.length > 0;
   const { movie, setMovie, error } = useSearch();
+  const [movies, setMovies] = useState([]);
+  
+  const hasMovie = movies?.length > 0;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(movie);
+    useMovies({ search: movie, setMovies });
   }
 
   const handleChangeMovie = (event) => {
